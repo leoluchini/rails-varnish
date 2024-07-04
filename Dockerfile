@@ -1,6 +1,11 @@
-FROM ruby:3.3.0-slim
+FROM ruby:3.3.0
 
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential libsqlite3-dev
+RUN apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
+    postgresql-client \
+    libqt5webkit5-dev \
+    && apt-get -q clean \
+    && rm -rf /var/lib/apt/lists
 
 WORKDIR /rails-varnish
 

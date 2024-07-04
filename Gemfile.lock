@@ -135,6 +135,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
+    pg (1.5.6)
     psych (5.1.2)
       stringio
     puma (6.4.2)
@@ -220,10 +221,10 @@ DEPENDENCIES
   bootsnap
   debug
   jbuilder (~> 2.12)
+  pg (~> 1.5, >= 1.5.6)
   puma (~> 6.4, >= 6.4.2)
   rails (~> 7.1.0)
   rspec-rails (~> 6.0, >= 6.0.3)
-  sqlite3 (~> 2.0, >= 2.0.2)
   tzinfo-data
 
 RUBY VERSION

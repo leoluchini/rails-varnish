@@ -11,6 +11,7 @@ backend default {
 acl purge {
   "localhost";
   "172.0.0.0"/8;
+  "192.0.0.0"/8;
 }
 
 sub vcl_recv {
@@ -30,4 +31,9 @@ sub vcl_recv {
       return(synth(404, "Key not found"));
     }
   }
+}
+
+sub vcl_backend_response {
+  set beresp.do_esi = true; // Do ESI processing
+  set beresp.ttl = 5m;
 }

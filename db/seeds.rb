@@ -9,3 +9,5 @@ Movie.create([
   { title: "Lord of the Rings" },
   { title: "Star Wars" }
 ])
+
+List.create(title: 'New Releases')
