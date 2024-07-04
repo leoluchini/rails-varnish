@@ -12,6 +12,12 @@ module EsiHelper
   end
 
   def esi_collection(collection)
-    collection.map { |item| esi_for(src: v1_movie_embed_path(item.id)) }
+    collection.map { |item| esi_for(src: embed_path_for(item)) }
+  end
+
+  private
+
+  def embed_path_for(resource)
+    polymorphic_path([:v1, resource, :embed])
   end
 end

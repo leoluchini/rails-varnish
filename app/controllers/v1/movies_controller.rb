@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class V1::MoviesController < ApplicationController
-  before_action :set_cache_control_headers, only: %i[index]
+  before_action :set_cache_control_headers, only: %i[index show embed]
 
   def index
-    set_surrogate_header('movies', movies.map(&:resource_key))
+    set_surrogate_header('movies')
     render locals: { movies: }
   end
 
