@@ -1,10 +1,9 @@
-version: '3.4'
 services:
   app:
     build:
       context: .
     depends_on:
-      - database
+      - db
     #   - redis
     ports:
       - "3000:3000"
@@ -13,12 +12,13 @@ services:
       - gem_cache:/usr/local/bundle/gems
     environment:
       RAILS_ENV: development
-  database:
-    image: nouchka/sqlite3:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - ./db/:/root/db/
+  db:
+    image: postgres:15.2
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
   varnish:
     build:
       context: .
@@ -32,7 +32,7 @@ services:
       - /var/lib/varnish:exec
     environment:
       - VARNISH_SIZE=2G
-    command: "-p default_keep=300"
+    command: -p feature=+esi_disable_xml_check -p feature=+esi_ignore_other_elements
     depends_on:
       - "app"
 
